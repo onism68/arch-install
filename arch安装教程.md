@@ -2,9 +2,7 @@
 
 ## 启动盘制作
 
-```
 dd if=xxx.iso of=/dev/sdb
-```
 
 ## 联网
 
@@ -20,9 +18,13 @@ systemctl enable dhcpcd
 
 systemctl start dhcpcd
 
+
+
 #### ping
 
 ping www.baidu.com
+
+
 
 ## timedate
 
@@ -134,13 +136,9 @@ pacman -S iw wpa_supplicant dialog intel-ucode grub efibootmgr
 
 ## grub引导
 
-```
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB
-```
 
-```
 grub-mkconfig -o /boot/grub/grub.cfg
-```
 
 
 
@@ -337,3 +335,4 @@ sudo pacman -S proxychains-ng
 mkdir .proxychains
 
 cp /etc/proxychains.conf ~/.proxychains
+
