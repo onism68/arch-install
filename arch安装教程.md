@@ -1,10 +1,12 @@
 # arch安装教程
 
-### 启动盘制作
+## 启动盘制作
 
+```
 dd if=xxx.iso of=/dev/sdb
+```
 
-### 联网
+## 联网
 
 #### wifi
 
@@ -22,19 +24,19 @@ systemctl start dhcpcd
 
 ping www.baidu.com
 
-### timedate
+## timedate
 
 timedatectl status
 
 timedatectl set-ntp true 
 
-### 修改源
+## 修改源
 
 vim /etc/pacman.d/mirrorlist
 
 
 
-### 分区
+## 分区
 
 #### lsblk
 
@@ -60,7 +62,7 @@ cfdisk /dev/sda 分区
 
 
 
-### 格式化
+## 格式化
 
 #### efi分区
 
@@ -70,7 +72,7 @@ mkfs.vfat /dev/sdb1
 
 mkfs.ext4 /dev/sdb2
 
-### 挂载
+## 挂载
 
 mount /dev/sdb2 /mnt
 
@@ -80,37 +82,37 @@ mount /dev/sdb1 /mnt/boot/EFI
 
 
 
-### 安装base base-devel
+## 安装base base-devel
 
 pacstrap /mnt base base-devel
 
-#### 生成分区表
+## 生成分区表
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
-### 切换环境
+## 切换环境
 
 arch-chroot /mnt
 
-### 时区配置
+## 时区配置
 
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 hwclock --systohc
 
-### 本地化
+## 本地化
 
-#### 安装vim
+### 安装vim
 
 pacman -S vim
 
-#### locale
+### locale
 
 vim /etc/locale.gen
 
 local-gen
 
-#### 语言
+### 语言
 
 ##### vim修改
 
@@ -122,15 +124,15 @@ LANG=en_US.UTF-8
 
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 
-### 给root设置密码
+## 给root设置密码
 
 passwd 
 
-### 安装一些必须软件
+## 安装一些必须软件
 
 pacman -S iw wpa_supplicant dialog intel-ucode grub efibootmgr
 
-### grub引导
+## grub引导
 
 ```
 grub-install --target=x86_64-efi --efi-directory=/boot/EFI --bootloader-id=GRUB
@@ -142,9 +144,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 
 
-### 添加用户
+## 添加用户
 
-#### 添加
+### 添加
 
 安装zsh
 
@@ -152,7 +154,7 @@ pacman -S zsh
 
 useradd -m -g users -G wheel -s /bin/zsh onism
 
-#### sudo提权
+### sudo提权
 
 visudo
 
@@ -160,15 +162,15 @@ visudo
 
 
 
-##### 设置用户密码
+### 设置用户密码
 
 passwd onism
 
-### 退出
+## 退出
 
 exit
 
-### 重启
+## 重启
 
 umount -R /mnt
 
@@ -176,7 +178,7 @@ reboot
 
 
 
-### 添加archlinuxcn源
+## 添加archlinuxcn源
 
 vim /etc/pacman.conf
 
@@ -196,29 +198,29 @@ sudo pacman -Syu archlinuxcn-keyring
 
 
 
-### 桌面环境
+## 桌面环境
 
-#### 显卡驱动
+### 显卡驱动
 
 sudo pacman -S xf86-video-intel 
 
-#### 安装xorg-server
+### 安装xorg-server
 
 sudo pacman -S xorg-server
 
-#### 触摸板驱动
+### 触摸板驱动
 
 sudo pacman -S xf86-input-synaptics
 
-#### alsa
+### alsa
 
 sudo pacman -S alsa-utils
 
-#### 中文字体
+### 中文字体
 
 sudo pacman -S wqy-microhei  ttf-dejavu
 
-#### kde桌面
+### kde桌面
 
 sudo pacman -S plasma
 sudo pacman -S sddm
@@ -237,7 +239,7 @@ sudo pacman -S networkmanager
 
 systemctl enable NetworkManager
 
-#### 联想笔记本WiFi问题
+### 联想笔记本WiFi问题
 
 sudo rfkill unblock all
 
@@ -251,7 +253,7 @@ sudo vim /etc/modprobe.d/ideapad.conf
 
 
 
-#### 针对NVIDIA双显卡笔记本无法正常关机的问题
+### 针对NVIDIA双显卡笔记本无法正常关机的问题
 
 1 BIOS禁用独显
 
@@ -261,7 +263,7 @@ sudo vim /etc/modprobe.d/ideapad.conf
 
 
 
-#### fcitx输入法
+### fcitx输入法
 
 sudo pacman -S fcitx fcitx-rime fcitx-im kcm-fcitx fcitx-sogoupinyin
 
@@ -276,7 +278,7 @@ export XMODIFIERS="@im=fcitx"
 
 
 
-#### GoLang配置
+### GoLang配置
 
 vim .xprofile
 
@@ -288,7 +290,7 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 
 
-#### 生成初始目录
+### 生成初始目录
 
 sudo pacman -S xdg-user-dirs
 
@@ -296,39 +298,39 @@ xdg-user-dirs-update
 
 
 
-### 一些软件
+## 一些软件
 
-#### 解压
+### 解压
 
 sudo pacman -S ark
 
-#### 图片
+### 图片
 
 sudo pacman -S gwenview
 
-#### Chrome
+### Chrome
 
 yaourt -S google-chrome
 
-#### GIT
+### GIT
 
 sudo pacman -S git
 
-#### 代码
+### 代码
 
 sudo pacman -S visual-studio-code-bin
 
-#### WPS
+### WPS
 
 sudo pacman -S ttf-wps-fonts wps-office
 
-#### Python
+### Python
 
-##### pip代理
+#### pip代理
 
 sudo pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pandas
 
-#### 代理
+### 代理
 
 sudo pacman -S proxychains-ng
 
