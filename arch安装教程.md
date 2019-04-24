@@ -221,9 +221,14 @@ sudo pacman -S wqy-microhei  ttf-dejavu
 ### kde桌面
 
 sudo pacman -S plasma
+
 sudo pacman -S sddm
+
 systemctl enable sddm
+
 sddm --example-config > /etc/sddm.conf
+
+##### 修改sddm的相关配置
 
 sudo vim /etc/sddm.conf
 
@@ -246,6 +251,8 @@ rfkill list all
 sudo vim /etc/modprobe.d/ideapad.conf
 
 键入 blacklist ideapad_laptop
+
+保存
 
 重启解决
 
