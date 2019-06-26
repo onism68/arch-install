@@ -112,7 +112,7 @@ pacman -S vim
 
 vim /etc/locale.gen
 
-local-gen
+locale-gen
 
 ### 语言
 
@@ -262,15 +262,17 @@ sudo vim /etc/modprobe.d/ideapad.conf
 
 1 BIOS禁用独显
 
-2 sudo vim /boot/grub/grub.cfg
+2 sudo vim /boot/grub/grub.cfg (升级内核或者更新grub后丢失)
 
 在对应的boot参数后添加 nouveau.modeset=0
+
+3 sudo vim /etc/default/grub 在双引号里面quiet后面加上 nouveau. modeset=0，然后sudo update-grub，这样一旦升级内核或者更新grub，nouveau那句话就不会消失 (此处感谢知乎dearfad)
 
 
 
 ### fcitx输入法
 
-sudo pacman -S fcitx fcitx-rime fcitx-im kcm-fcitx fcitx-sogoupinyin
+sudo pacman -S fcitx fcitx-configtool fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-sogoupinyin
 
 vim .xprofile
 
