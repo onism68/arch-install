@@ -86,7 +86,7 @@ mount /dev/sdb1 /mnt/boot/EFI
 
 ## 安装base base-devel
 
-pacstrap /mnt base base-devel
+pacstrap /mnt base base-devel linux linux-firmware
 
 ## 生成分区表
 
